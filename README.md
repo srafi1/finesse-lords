@@ -1,7 +1,7 @@
 # finesse-lords
 Shakil Rafi, Ibnul Jahan, Tiffany Moi, Arif Roktim
 
-## Dataset: Parties in Nwe York City (2016)
+## Dataset: Parties in New York City (2016)
 This dataset contains information on noise complaints about parties throughout New York City during 2016 including coordinates and number of calls from each location.
 
 [Dataset](https://www.kaggle.com/somesnm/partynyc)
