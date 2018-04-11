@@ -4,7 +4,9 @@
   <script src='https://d3js.org/d3.v4.min.js'></script>
   <script src='boroughs.geojson'></script>
 </head>
+    
 <body>
+    <center>
   <script>
 var width = 700,
     height = 580;
@@ -17,7 +19,6 @@ var svg = d3.select('body')
 var g = svg.append('g');
 
 var albersProjection = d3.geoAlbers()
-
   .scale(75000)
   .rotate([74.0060, 0])
   .center([0, 40.7128])
@@ -33,7 +34,21 @@ g.selectAll('path')
   .attr('fill', '#ccc')
   .attr('d', geoPath);
 
+/* Add marker data
+var rodents = svg.append('g');
+
+rodents.selectAll('path')
+  .data(rodents_json.features)
+  .enter()
+  .append('path')
+  .attr('fill', '#900')
+  .attr('stroke', '#999')
+  .attr('d', geoPath);
+      */
+  				
   </script>
+        </center>
 </body>
+        
 </html>
 			
