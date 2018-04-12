@@ -1,4 +1,4 @@
-var neighborhoods_json = 
+var boroughs_json = 
 {
 "type": "FeatureCollection",
 "crs": {
