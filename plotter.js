@@ -1,4 +1,3 @@
-
 var width = 700,
     height = 580;
 
@@ -33,5 +32,3 @@ svg.selectAll("circle")
     .attr("cy", (d) => albersProjection(d.geometry.coordinates)[1])
     .attr("r", (d) => Math.min(d.properties.num_calls/10, 10) + "px")
     .attr("fill", "red")
-
-
