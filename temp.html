@@ -1,15 +1,15 @@
 <html>
-<head>
-  <title>A D3 map</title>
-  <script src='https://d3js.org/d3.v4.min.js'></script>
-  <script src='boroughs.geojson'></script>
-</head>
-    
-<body>
+  <head>
+    <title>A D3 map</title>
+    <script src='https://d3js.org/d3.v4.min.js'></script>
+    <script src='boroughs.geojson'></script>
+  </head>
+
+  <body>
     <center>
-  <script>
-var width = 700,
-    height = 580;
+      <script>
+        var width = 700,
+  height = 580;
 
 var svg = d3.select('body')
   .append('svg')
@@ -25,30 +25,27 @@ var albersProjection = d3.geoAlbers()
   .translate([width/2, height/2]);
 
 var geoPath = d3.geoPath()
-    .projection(albersProjection);
+  .projection(albersProjection);
 
 g.selectAll('path')
   .data(neighborhoods_json.features)
   .enter()
   .append('path')
-  .attr('fill', '#ccc')
+  .attr('fill', '#2bf')
+  .attr('stroke', '#000')
   .attr('d', geoPath);
 
-/* Add marker data
-var rodents = svg.append('g');
+svg.selectAll("circle")
+  .data([ [ -74.050471371285454, 40.566417387938124 ] ]).enter()
+  .append("circle")
+  .attr("cx", function (d) { console.log(albersProjection(d)); return albersProjection(d)[0]; })
+  .attr("cy", function (d) { return albersProjection(d)[1]; })
+  .attr("r", "8px")
+  .attr("fill", "red")
 
-rodents.selectAll('path')
-  .data(rodents_json.features)
-  .enter()
-  .append('path')
-  .attr('fill', '#900')
-  .attr('stroke', '#999')
-  .attr('d', geoPath);
-      */
-  				
-  </script>
-        </center>
-</body>
-        
+      </script>
+    </center>
+  </body>
+
 </html>
-			
+
