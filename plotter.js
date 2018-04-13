@@ -47,7 +47,7 @@ console.log(albersProjection);
 //Nothing past here works yet
 
 var reSize = function() {
-    console.log(g);
+    console.log("Zoom Level: " + zoomLevel);
 
     //Make a new projection, but change only the scale
     albersProjection = d3.geoAlbers()
