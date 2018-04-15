@@ -1,0 +1,24 @@
+Team Finesse Lords - Ibnul Jahan, Tiffany Moi, Shakil Rafi, Arif Roktim
+SoftDev2 pd07
+p01 - viz
+  _____ ____  
+  \___ \___ \ 
+      | |__) |
+      | |__ < 
+   ___| |__) |
+  /____/____/ 
+
+=======================================================================
+
+everyone -- 2018-04-09 13:00
+Initialized an empty map of NYC using geojson
+
+everyone -- 2018-04-11 13:00
+Plotted all points in dataset on the map with varied sizes based on number of calls
+
+ibnulJ -- 2018-04-13 07:30
+Started zoom functionality on map using a button and clicking on points for info
+
+shakilR -- 2018-04-13 10:00
+Finished zoom functionality
+
