@@ -21,4 +21,5 @@ Started zoom functionality on map using a button and clicking on points for info
 
 shakilR -- 2018-04-13 10:00
 Finished zoom functionality
+BUG: zooming out to a negative number reflects all points
 
