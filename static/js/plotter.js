@@ -100,3 +100,28 @@ var zoomer = document.getElementById("zoom");
 zoomer.addEventListener("click", () => reSize(1) );
 var unzoomer = document.getElementById("unzoom");
 unzoomer.addEventListener("click", () => reSize(-1) );
+
+
+//Zipcodes
+
+
+var g = svg.append('g');
+
+var albersProjection = d3.geoAlbers()
+    .scale(25000)
+    .rotate([74.0060, 0])
+    .center([0, 40.7128])
+    .translate([width/2, height/2]);
+
+var geoPath = d3.geoPath()
+    .projection(albersProjection);
+
+g.selectAll('path')
+    .data(zipcode.features)
+    .enter()
+    .append('path')
+    .attr('fill', '#2bf')
+    .attr('stroke', '#000')
+    .attr('d', geoPath);
+    
+//make color gradient now
