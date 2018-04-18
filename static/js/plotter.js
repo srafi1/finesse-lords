@@ -158,7 +158,11 @@ var zip = function(){
             return numCalls/3000
         })
         .attr('d', geoPath)
-        .on('click', (d) => console.log(d.properties.postalcode + " has " + zip_data[d.properties.postalcode]))
+        .on('click', (d) => {
+            d3.select('#location').html(d.properties.postalcode );
+            d3.select('#numCalls').html(zip_data[d.properties.postalcode]);
+            console.log(d.properties.postalcode + " has " + zip_data[d.properties.postalcode])
+        });
 };
 
 d3.select('#dots').on('click', indiv);
