@@ -46,9 +46,9 @@ var indiv = function(){
         .attr("cy", (d) => albersProjection(d.geometry.coordinates)[1])
         .attr("r", (d) => Math.min(d.properties.num_calls/(30 - zoomLevel*2), 5 + zoomLevel) + "px")
         .attr("fill", "red")
-        .on('click', function(d){
-            console.log(d.properties.num_calls + " calls were made in complaint at " + albersProjection(d.geometry.coordinates)[0] + " , " + albersProjection(d.geometry.coordinates) [1] );
-            document.getElementById("pointInfo").innerHTML = "There were " + d.properties.num_calls + " noise complaint calls made at latitude " + d.geometry.coordinates[0] + " and longitude " + d.geometry.coordinates[1] + " at a " + d.properties["Location Type"];
+        .on('click', (d) => {
+            d3.select("#location").html(d.geometry.coordinates[1] + ", <br>" + d.geometry.coordinates[1]);
+            d3.select("#numCalls").html(d.properties["num_calls"]);
         })
 };
 indiv();

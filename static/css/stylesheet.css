@@ -1,3 +1,21 @@
-body {
-    text-align: center;
+#container {
+  text-align: center;
+}
+
+.block {
+  display: inline-block;
+  padding: 10px;
+  vertical-align: top;
+}
+
+#controls {
+  border: 1px solid black;
+}
+
+svg {
+  border: 1px solid black;
+}
+
+td {
+  padding: 5px;
 }

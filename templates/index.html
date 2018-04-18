@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Parties in NYC</title>
+    <title>Noise Complaints in NYC (2016)</title>
     <link rel="stylesheet" href="/static/css/stylesheet.css" />
     <script src='/static/js/d3.v4.min.js'></script>
     <script src='/static/js/boroughs.js'></script>
@@ -11,15 +11,39 @@
   </head>
 
   <body>
-    <h1 id="pointInfo">No point selected</h1>
-    <svg></svg>
-    <br><br>
-    <button id="unzoom"> Unzoom! </button>
-    <button id="zoom"> Zoom! </button>
-    <br><br>
-    <button id = "zip">View by Zipcode</button>
-    <button id ="dots">View Individually</button>
-    <p>Use arrow keys to move around</p>
+    <center>
+      <h1>Noise Complaints in NYC (2016)</h1>
+      <div id="container">
+        <div id="map" class="block">
+          <svg></svg>
+          <p>Use arrow keys to move around</p>
+        </div>
+
+        <div id="controls" class="block">
+          <button id="unzoom">Zoom out</button>
+          <button id="zoom">Zoom in</button>
+          <br><br>
+          <button id = "zip">View by Zipcode</button>
+          <button id ="dots">View Individually</button>
+          <br>
+          <br>
+
+          <center>
+            <table>
+              <tr>
+                <td>Location: </td>
+                <td id="location">No point selected</td>
+              </tr>
+              <tr>
+                <td>Number of calls: </td>
+                <td id="numCalls"></td>
+              </tr>
+            </table>
+          </center>
+        </div>
+      </div>
+    </center>
+
     <script src='/static/js/plotter.js'></script>
   </body>
 

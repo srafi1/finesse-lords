@@ -29,3 +29,6 @@ parsed zipcode data and added zipcode geojson to map as a gradient view
 shakilR -- 2018-04-17 22:48
 calibrated zoom functionality and added movement using arrow keys
 
+shakilR -- 2018-04-18 14:39
+organized point info into table
+
