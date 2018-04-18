@@ -3,43 +3,55 @@ var zoomLevel = 1;
 
 var width = 700,
     height = 580;
+
 var panX = width/2,
-    panY = height/2,
-    move = false;
+    panY = height/2;
 
 var svg = d3.select('svg')
     .attr('width', width)
     .attr('height', height);
 
-var g = svg.append('g');
+var g, geoPath, albersProjection;
 
-var albersProjection = d3.geoAlbers()
-    .scale(60000 + 10000*(zoomLevel)**2)
-    .rotate([74.0060, 0])
-    .center([0, 40.7128])
-    .translate([panX, panY]);
+var rem = function(){
+    d3.selectAll('g').remove();
+    d3.selectAll('circle').remove();
+};
 
-var geoPath = d3.geoPath().projection(albersProjection);
+var indiv = function(){
+    rem();
 
-g.selectAll('path')
-    .data(boroughs_json.features)
-    .enter()
-    .append('path')
-    .attr('fill', '#2bf')
-    .attr('stroke', '#000')
-    .attr('d', geoPath);
+    g = svg.append('g');
 
-svg.selectAll("circle")
-    .data(points.features).enter()
-    .append("circle")
-    .attr("cx", (d) => albersProjection(d.geometry.coordinates)[0])
-    .attr("cy", (d) => albersProjection(d.geometry.coordinates)[1])
-    .attr("r", (d) => Math.min(d.properties.num_calls/20, 5) + "px")
-    .attr("fill", "red")
-    .on('click', function(d){
-        console.log(d.properties.num_calls + " calls were made in complaint at " + albersProjection(d.geometry.coordinates)[0] + " , " + albersProjection(d.geometry.coordinates) [1] );
-        document.getElementById("pointInfo").innerHTML = "There were " + d.properties.num_calls + " noise complaint calls made at latitude " + d.geometry.coordinates[0] + " and longitude " + d.geometry.coordinates[1] + " at a " + d.properties["Location Type"];
-    })
+    albersProjection = d3.geoAlbers()
+        .scale(60000 + 10000*(zoomLevel)**2)
+        .rotate([74.0060, 0])
+        .center([0, 40.7128])
+        .translate([panX, panY]);
+
+    geoPath = d3.geoPath().projection(albersProjection);
+
+    g.selectAll('path')
+        .data(boroughs_json.features)
+        .enter()
+        .append('path')
+        .attr('fill', '#2bf')
+        .attr('stroke', '#000')
+        .attr('d', geoPath);
+
+    svg.selectAll("circle")
+        .data(points.features).enter()
+        .append("circle")
+        .attr("cx", (d) => albersProjection(d.geometry.coordinates)[0])
+        .attr("cy", (d) => albersProjection(d.geometry.coordinates)[1])
+        .attr("r", (d) => Math.min(d.properties.num_calls/(30 - zoomLevel*2), 5 + zoomLevel*2) + "px")
+        .attr("fill", "red")
+        .on('click', function(d){
+            console.log(d.properties.num_calls + " calls were made in complaint at " + albersProjection(d.geometry.coordinates)[0] + " , " + albersProjection(d.geometry.coordinates) [1] );
+            document.getElementById("pointInfo").innerHTML = "There were " + d.properties.num_calls + " noise complaint calls made at latitude " + d.geometry.coordinates[0] + " and longitude " + d.geometry.coordinates[1] + " at a " + d.properties["Location Type"];
+        })
+};
+indiv();
 
 var resize = function(delta) {
     zoomLevel += delta;
@@ -122,3 +134,23 @@ d3.select('body').on('keydown', () => {
         .attr("cx", (d) => albersProjection(d.geometry.coordinates)[0])
         .attr("cy", (d) => albersProjection(d.geometry.coordinates)[1])
 });
+
+var zip = function(){
+    rem();
+
+    g = svg.append('g');
+
+    g.selectAll('path')
+        .data(zipcode.features)
+        .enter()
+        .append('path')
+        .attr('fill', '#2bf')
+        .attr('stroke', '#000')
+        .attr('fill-opacity', function(d) {
+            return zip_data[d.properties.postalcode]/400
+        })
+        .attr('d', geoPath);
+};
+
+d3.select('#dots').on('click', indiv);
+d3.select('#zip').on('click', zip);
