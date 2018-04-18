@@ -19,7 +19,15 @@ with open('static/data/bar_locations.csv', 'rb') as csvfile:
             zipcode = int(row[1][:5])
             index = listOfZips.index(zipcode)
             incidents[index] = incidents[index] + int(row[6])
-            print incidents[index]
+           
         except:
             pass
-        
+print max(incidents)
+f= open("static/js/zipcode_data.js","w")
+str = "var zip_data = {"
+for i in range(len(listOfZips)):
+     str += "'%d' : %d, " % (listOfZips[i], incidents[i])
+str = str.strip(",")
+str += "}"
+f.write(str)
+f.close()
