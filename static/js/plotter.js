@@ -44,7 +44,7 @@ var indiv = function(){
         .append("circle")
         .attr("cx", (d) => albersProjection(d.geometry.coordinates)[0])
         .attr("cy", (d) => albersProjection(d.geometry.coordinates)[1])
-        .attr("r", (d) => Math.min(d.properties.num_calls/(30 - zoomLevel*2), 5 + zoomLevel*2) + "px")
+        .attr("r", (d) => Math.min(d.properties.num_calls/(30 - zoomLevel*2), 5 + zoomLevel) + "px")
         .attr("fill", "red")
         .on('click', function(d){
             console.log(d.properties.num_calls + " calls were made in complaint at " + albersProjection(d.geometry.coordinates)[0] + " , " + albersProjection(d.geometry.coordinates) [1] );
@@ -82,7 +82,11 @@ var resize = function(delta) {
         .duration(1000)
         .attr("cx", (d) => albersProjection(d.geometry.coordinates)[0])
         .attr("cy", (d) => albersProjection(d.geometry.coordinates)[1])
-        .attr("r", (d) => Math.min(d.properties.num_calls/(30 - zoomLevel*2), 5 + zoomLevel*2) + "px");
+        .attr("r", (d) => Math.max(
+            Math.min(
+                d.properties.num_calls/(31 - zoomLevel*1.5),
+                5 + zoomLevel),
+            zoomLevel/2) + "px");
 }
 
 //doesn't work properly
@@ -147,9 +151,14 @@ var zip = function(){
         .attr('fill', '#2bf')
         .attr('stroke', '#000')
         .attr('fill-opacity', function(d) {
-            return zip_data[d.properties.postalcode]/400
+            var numCalls = zip_data[d.properties.postalcode];
+            if (!numCalls) {
+                numCalls = 0;
+            }
+            return numCalls/3000
         })
-        .attr('d', geoPath);
+        .attr('d', geoPath)
+        .on('click', (d) => console.log(d.properties.postalcode + " has " + zip_data[d.properties.postalcode]))
 };
 
 d3.select('#dots').on('click', indiv);
