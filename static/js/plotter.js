@@ -50,6 +50,18 @@ var indiv = function(){
             d3.select("#location").html(d.geometry.coordinates[1] + ", <br>" + d.geometry.coordinates[1]);
             d3.select("#numCalls").html(d.properties["num_calls"]);
         })
+        .on('mouseover', (d) => {
+            var offset = 5 + Math.min(d.properties.num_calls/(30 - zoomLevel*2), 5 + zoomLevel)
+            svg.append('text')
+                .attr('x', albersProjection(d.geometry.coordinates)[0] + offset)
+                .attr('y', albersProjection(d.geometry.coordinates)[1] + offset)
+                .text(d.properties['num_calls'] + ' calls')
+                .attr('font-size', '24px')
+                .attr('font-family', 'Arial')
+                .attr('font-weight', 'bold')
+                .attr('background', 'green');
+        })
+        .on('mouseout', () => svg.select('text').remove());
 };
 indiv();
 
