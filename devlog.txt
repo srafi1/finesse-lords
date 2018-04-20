@@ -23,8 +23,11 @@ shakilR -- 2018-04-13 10:00
 Finished zoom functionality
 BUG: zooming out to a negative number reflects all points
 
-tiffanyM -- 2018-04-17 1:00
-parsed zipcode data and added zipcode geojson to map as a gradient view
+tiffanyM -- 2018-04-17 13:15
+parsed zipcode data to aggregate all complaints in a zipcode
+wrote this information into a js file
+added zipcode geojson to map to display zipcode borders
+used the values from the zipcode data to change the opacity of the polygon to make a gradient map
 
 shakilR -- 2018-04-17 22:48
 calibrated zoom functionality and added movement using arrow keys
