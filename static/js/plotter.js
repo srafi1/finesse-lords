@@ -47,7 +47,7 @@ var indiv = function(){
         .attr("r", (d) => Math.min(d.properties.num_calls/(30 - zoomLevel*2), 5 + zoomLevel) + "px")
         .attr("fill", "red")
         .on('click', (d) => {
-            d3.select("#location").html(d.geometry.coordinates[1] + ", <br>" + d.geometry.coordinates[1]);
+            d3.select("#location").html(d.geometry.coordinates[1] + " N, <br>" + (d.geometry.coordinates[0] * -1) + " W");
             d3.select("#numCalls").html(d.properties["num_calls"]);
         })
         .on('mouseover', (d) => {

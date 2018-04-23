@@ -38,3 +38,6 @@ organized point info into table
 shakilR -- 2018-04-22 20:44
 num_calls shows up on hover and header font changed
 
+ibnulJ -- 2018-04-23 07:29
+fixed error where latitude was displayed twice on click
+
