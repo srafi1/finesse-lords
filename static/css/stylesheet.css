@@ -1,15 +1,25 @@
+@font-face {
+    font-family: BebasNeue;
+    src: url(/static/fonts/BebasNeue-Regular.ttf);
+}
+
+h1 {
+    font-size: 48px;
+    font-family: BebasNeue;
+}
+
 #container {
   text-align: center;
 }
 
 .block {
   display: inline-block;
-  padding: 10px;
   vertical-align: top;
 }
 
 #controls {
   border: 1px solid black;
+  padding: 10px;
 }
 
 svg {
